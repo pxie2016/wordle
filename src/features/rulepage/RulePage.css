@@ -1,0 +1,15 @@
+.rulePage{
+    
+    background-color: #FDFDF0;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    
+}
+.exampleWord{
+    margin: 20px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
