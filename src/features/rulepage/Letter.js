@@ -1,10 +1,8 @@
-import './Letter.css'
+import React from 'react';
 
-export default function Letter (props){
-    let letterClass = "letter " + `${props.color}`
-    return (
-        <div className={letterClass}>
-            {props.value}
-        </div>
-    )
+import './Letter.css';
+
+export default function Letter(props) {
+  let letterClass = 'letter ' + `${props.color}`;
+  return <div className={letterClass}>{props.value}</div>;
 }

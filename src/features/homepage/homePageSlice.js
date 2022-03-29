@@ -1,32 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    difficulty: "easy",
-    wordLength: 5,
-    tries: 7
+  difficulty: 'easy',
+  wordLength: 5,
+  tries: 7,
 };
 
 export const homePageSlice = createSlice({
-    name: 'homepage',
-    initialState,
-    // The `reducers` field lets us define reducers and generate associated actions
-    reducers: {
-        goEasy: (state) => {
-            state.difficulty = "easy";
-            state.wordLength = 5;
-            state.tries = 7;
-        },
-        goMedium: (state) => {
-            state.difficulty = "medium";
-            state.wordLength = 6;
-            state.tries = 6;
-        },
-        goHard: (state) => {
-            state.difficulty = "hard";
-            state.wordLength = 7;
-            state.tries = 5;
-        },
+  name: 'homepage',
+  initialState,
+  // The `reducers` field lets us define reducers and generate associated actions
+  reducers: {
+    goEasy: (state) => {
+      state.difficulty = 'easy';
+      state.wordLength = 5;
+      state.tries = 7;
     },
+    goMedium: (state) => {
+      state.difficulty = 'medium';
+      state.wordLength = 6;
+      state.tries = 6;
+    },
+    goHard: (state) => {
+      state.difficulty = 'hard';
+      state.wordLength = 7;
+      state.tries = 5;
+    },
+  },
 });
 
 export const { goEasy, goMedium, goHard } = homePageSlice.actions;

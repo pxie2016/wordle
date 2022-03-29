@@ -1,16 +1,16 @@
 import React from 'react';
 
-import {HomePage} from "./features/homepage/HomePage";
+import { HomePage } from './features/homepage/HomePage';
 import RulePage from './features/rulepage/RulePage';
 
 function App() {
   return (
     <div className="App">
       <div>
-      <HomePage />
+        <HomePage />
       </div>
       <div>
-      <RulePage />
+        <RulePage />
       </div>
     </div>
   );

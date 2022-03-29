@@ -1,58 +1,64 @@
 .page {
-    display: grid;
-    grid-template-rows: 100px 100px 125px 125px 125px 100px 50px;
-    grid-template-columns: 50px 150px 200px 150px 50px;
-    grid-template-areas: ". title title title ."
-                         ". . . . ."
-                         ". . easy . ."
-                         ". . medium . ."
-                         ". . hard . ."
-                         ". . . . ."
-                         ". . rules . .";
-    font-family: Arial, sans-serif;
-    align-content: center;
-    justify-items: center;
-    background-color: #FDFDF0;
+  display: grid;
+  grid-template-rows: 100px 100px 125px 125px 125px 100px 50px;
+  grid-template-columns: 50px 150px 200px 150px 50px;
+  grid-template-areas:
+    '. title title title .'
+    '. . . . .'
+    '. . easy . .'
+    '. . medium . .'
+    '. . hard . .'
+    '. . . . .'
+    '. . rules . .';
+  font-family: Arial, sans-serif;
+  align-content: center;
+  justify-items: center;
+  background-color: #fdfdf0;
 }
 
 .title {
-    display: flex;
-    grid-area: title;
-    font-size: xxx-large;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  grid-area: title;
+  font-size: xxx-large;
+  justify-content: center;
+  align-items: center;
 }
 
 .easy {
-    grid-area: easy;
+  grid-area: easy;
 }
 
 .medium {
-    grid-area: medium;
+  grid-area: medium;
 }
 
 .hard {
-    grid-area: hard;
+  grid-area: hard;
 }
 
-.easy, .medium, .hard {
-    display: flex;
-    font-style: italic;
-    font-size: x-large;
-    border-radius: 15px;
-    border: 2px solid;
-    margin: 10px;
-    justify-content: center;
-    align-items: center;
-    justify-self: stretch;
+.easy,
+.medium,
+.hard {
+  display: flex;
+  font-style: italic;
+  font-size: x-large;
+  border-radius: 15px;
+  border: 2px solid;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+  justify-self: stretch;
 }
 
 .rules {
-    grid-area: rules;
-    font-size: medium;
-    text-decoration: underline;
+  grid-area: rules;
+  font-size: medium;
+  text-decoration: underline;
 }
 
-.easy, .medium, .hard, .rules:hover {
-    cursor: pointer;
+.easy,
+.medium,
+.hard,
+.rules:hover {
+  cursor: pointer;
 }
