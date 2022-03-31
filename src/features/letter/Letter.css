@@ -1,0 +1,23 @@
+.letter{
+    width: 40px;
+    height: 40px;
+    border: 2.5px solid grey;
+    margin: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8em;
+    font-family: Arial, sans-serif;
+}
+.green{
+    background-color: #538d4e;
+    color:white
+}
+.yellow{
+    background-color: #B59F3B;
+    color:white
+}
+.grey{
+    background-color: #3a3a3C;
+    color:white
+}
