@@ -10,8 +10,9 @@ import {
   selectRowColors,
 } from './gamePageSlice.js';
 
-import Letter from '../rulepage/Letter.js';
+import Letter from '../letter/Letter.js';
 import './GamePage.css';
+import {Link} from "react-router-dom";
 
 export function GamePage() {
   const values = useSelector(selectRowValues);
@@ -74,6 +75,7 @@ export function GamePage() {
           return <Letter value={row1Val[idx]} color={colors[0][idx]} />;
         })}
       </div>
+      <Link to={"/"} className="home">Back to home</Link>
     </div>
   );
 }
