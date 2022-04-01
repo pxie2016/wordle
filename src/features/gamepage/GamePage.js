@@ -1,13 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  exampleReducer,
-  selectSolution,
-  selectWin,
-  selectLose,
-  selectValidationStatus,
-  selectRowValues,
-  selectRowColors,
+import {selectRowColors, selectRowValues, exampleReducer
 } from './gamePageSlice.js';
 
 import Letter from '../letter/Letter.js';
@@ -15,65 +8,18 @@ import './GamePage.css';
 import {Link} from "react-router-dom";
 
 export function GamePage() {
-  const values = useSelector(selectRowValues);
-  let row1Val = values[0];
-  const colors = useSelector(selectRowColors);
+  const values = useSelector(state => selectRowValues(state, 1));
+  const colors = useSelector(state => selectRowColors(state, 1));
   const dispatch = useDispatch();
-  const [state, setState] = useState({
-    solution: 'LEARN',
-    win: false,
-    lose: false,
 
-    gridState: {
-      byRow: {
-        row1: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-        row2: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-        row3: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-        row4: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-        row5: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-        row6: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-        row7: {
-          validated: false,
-          letterValues: ['', '', '', '', ''],
-          letterColors: ['', '', '', '', ''],
-        },
-      },
-      allRows: ['row1', 'row2', 'row3', 'row4', 'row5', 'row6', 'row7'],
-    },
+  let content = Object.keys(values).map((element) => {
+      return <Letter key={element} value={values[element]} color={colors[element]} />
   });
-
-  console.log(row1Val);
 
   return (
     <div className="gamepage" onClick={() => dispatch(exampleReducer())}>
       <div className="exampleWord">
-        {row1Val.map((elem, idx) => {
-          return <Letter value={row1Val[idx]} color={colors[0][idx]} />;
-        })}
+          {content}
       </div>
       <Link to={"/"} className="home">Back to home</Link>
     </div>
