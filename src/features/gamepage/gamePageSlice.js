@@ -1,17 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {getInitialStateFromLengthTries} from '../../utils/getInitialStateFromLengthTries';
 
-const initialState = {
-  solution: '',
-  wordLength: 0,
-  tries: 0,
-  win: false,
-  lose: false,
-  gridState: {
-    allRows: [],
-    byRow: {}
-  }
-};
+const initialState = {};
 
 export const gamePageSlice = createSlice({
   name: 'gamepage',
