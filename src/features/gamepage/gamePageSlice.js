@@ -1,20 +1,32 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {getInitialStateFromDifficulty} from '../../utils/getInitialStateFromDifficulty';
+import {getInitialStateFromLengthTries} from '../../utils/getInitialStateFromLengthTries';
 
-export const setInitialState = () => {
-  let wordLength = 5;
-  let tries = 7;
-  return getInitialStateFromDifficulty(wordLength, tries);
-}
-const initialState = setInitialState();
-
-console.log(initialState)
+const initialState = {
+  solution: '',
+  wordLength: 0,
+  tries: 0,
+  win: false,
+  lose: false,
+  gridState: {
+    allRows: [],
+    byRow: {}
+  }
+};
 
 export const gamePageSlice = createSlice({
   name: 'gamepage',
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
+    initEasy (state, action) {
+      return getInitialStateFromLengthTries(5, 7);
+    },
+    initMedium (state, action) {
+      return getInitialStateFromLengthTries(6, 6);
+    },
+    initHard (state, action) {
+      return getInitialStateFromLengthTries(7, 5);
+    },
     setWin: (state) => {
       state.win = true;
     },
@@ -32,7 +44,7 @@ export const gamePageSlice = createSlice({
   },
 });
 
-export const { setWin, setLose, exampleReducer } = gamePageSlice.actions;
+export const { initEasy, initMedium, initHard, setLose, exampleReducer } = gamePageSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
@@ -49,12 +61,5 @@ export const selectRowValues = (state, rowNumber) => {
 export const selectRowColors = (state, rowNumber) => {
   return state.gamepage.gridState.byRow[state.gamepage.gridState.allRows[rowNumber - 1]].letterColors;
 };
-
-// TODO: Strip all values and colors for rendering at once
-export const selectAllRowValues = (state) => {
-};
-export const selectAllRowColors = (state) => {
-
-}
 
 export default gamePageSlice.reducer;

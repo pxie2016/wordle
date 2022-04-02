@@ -13,13 +13,13 @@ function initialRowState(wordLength) {
     return rowState;
 }
 
-export function getInitialStateFromDifficulty(wordLength, tries) {
+export function getInitialStateFromLengthTries(wordLength, tries) {
 
     let initState = {
-        difficulty: 'easy',
-        wordLength: 5,
-        tries: 7,
-        solution: 'LEARN',
+        difficulty: (wordLength === 5) ? 'easy' : ((wordLength === 6) ? 'medium' : 'hard'),
+        wordLength: wordLength,
+        tries: tries,
+        solution: (wordLength === 5) ? 'LEARN' : ((wordLength === 6) ? 'LEARNT' : 'LEARNED'),
         win: false,
         lose: false,
         gridState: {
