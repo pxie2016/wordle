@@ -1,23 +1,19 @@
 import React from 'react';
+import {Link, Outlet} from "react-router-dom";
 
-import { HomePage } from './features/homepage/HomePage';
-import { GamePage } from './features/gamepage/GamePage';
-import RulePage from './features/rulepage/RulePage';
+import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <div>
-        <HomePage />
-      </div>
-      <div>
-        <GamePage />
-      </div>
-      <div>
-        <RulePage />
-      </div>
-    </div>
-  );
+    return (
+        <div className="App">
+            <div className="title">Wordle</div>
+            <Link to={"/gamepage/easy"} className="easy">Easy</Link>
+            <Link to={"/gamepage/medium"} className="medium">Medium</Link>
+            <Link to={"/gamepage/hard"} className="hard">Hard</Link>
+            <Link to={"/rulepage"} className="rules">Rules</Link>
+            <Outlet />
+        </div>
+    );
 }
 
 export default App;
