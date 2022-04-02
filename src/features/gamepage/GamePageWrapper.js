@@ -5,6 +5,7 @@ import {useParams} from "react-router-dom";
 import {GamePage} from "./GamePage";
 import {useDispatch} from "react-redux";
 import {initEasy, initMedium, initHard} from "./gamePageSlice";
+import Keyboard from "../keyboard/Keyboard";
 
 export function GamePageWrapper() {
     let difficultyObject = useParams();
@@ -17,6 +18,10 @@ export function GamePageWrapper() {
             <h1>This is just a wrapper of the actual GamePage!</h1>
             <h2>The difficulty is {currDiff}</h2>
             <GamePage />
+
+            <div>
+                <Keyboard />
+            </div>
         </div>
     )
 

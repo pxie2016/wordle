@@ -1,0 +1,44 @@
+.line {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.key {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid gray;
+    font-family: Arial, sans-serif;
+    background-color: #efeeee;
+    border-radius: 4px;
+    margin: 5px;
+    padding: 2px 2px;
+    box-shadow:
+        inset 0 -1px 0 #b4b3b3,
+        inset 0px 1px 1px -1px #fff,
+        0px 1px 1px 0px #848282;
+    transition:
+        transform 0.07s ease,
+        background-color 0.07s ease,
+        box-shadow 0.07s ease;
+}
+
+.key:hover {
+    background-color: #dfdddd;
+}
+
+.key:active {
+    transform: translateY(1.5px);
+    box-shadow:
+        inset 0 -0.5px 0 #aaaaaa,
+        inset 0px -1px 1px -1px #fff,
+        0px 0.5px 0.75px 0px #999;
+}
+
+.func {
+    width: 80px;
+    background-color: #e5e5e5;
+}

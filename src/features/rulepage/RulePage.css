@@ -1,17 +1,12 @@
 .rulePage {
-
-
     display: flex;
     flex-direction: column;
     background-color: #FDFDF0;
     font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
-
     text-align: center;
 }
-
-
 
 .exampleWord {
     margin: 20px;
