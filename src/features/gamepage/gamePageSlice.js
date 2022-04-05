@@ -31,10 +31,17 @@ export const gamePageSlice = createSlice({
       Object.assign(state.gridState.byRow[state.gridState.allRows[0]].letterColors,
           {letter1: 'grey', letter2: 'green', letter3: 'green', letter4: 'green', letter5: 'green'});
     },
-  },
+    
+    letterReducer:{
+      reducer: (state, action) => {
+        state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${action.payload.col}`] = action.payload.value;
+      },
+      prepare:(value, row, col)=>({payload:{value,row,col}})
+      }
+    },
 });
 
-export const { initEasy, initMedium, initHard, setLose, exampleReducer } = gamePageSlice.actions;
+export const { initEasy, initMedium, initHard, setLose, exampleReducer, letterReducer ,keyBoardReducer} = gamePageSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of

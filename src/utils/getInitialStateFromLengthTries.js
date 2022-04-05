@@ -37,6 +37,7 @@ export function getInitialStateFromLengthTries(wordLength, tries) {
 
 }
 
+
 /*
 const initialState = {
     solution: 'LEARN',
