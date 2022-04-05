@@ -12,20 +12,20 @@ function Keyboard() {
 
         <div className='line'>
             {keys1.map((key)=>{
-                return <Key keyValue={key} />;
+                return <Key key={key} keyValue={key} />;
             })}
         </div>
 
         <div className='line'>
             {keys2.map((key)=>{
-                return <Key keyValue={key} />;
+                return <Key key={key} keyValue={key} />;
             })}
         </div>
 
         <div className='line'>
             <Key keyValue={'Enter'} class={' func'}/>
             {keys3.map((key)=>{
-                return <Key keyValue={key} />;
+                return <Key key={key} keyValue={key} />;
             })}
             <Key keyValue={'Delete'} class={' func'} />
         </div>
