@@ -6,10 +6,13 @@ import './GamePage.css';
 import {Link} from "react-router-dom";
 import {store} from "../../app/store";
 
+import {validateRow} from "../../utils/validateRow";
+
 export function GamePage() {
 
   const dispatch = useDispatch();
   console.log(store.getState());
+  console.log(validateRow({letter1: "A", letter2: "B", letter3: "B", letter4: "B", letter5: "E"}, 'ABCEB'));
 
   const values = useSelector(state => selectRowValues(state, 1));
   const colors = useSelector(state => selectRowColors(state, 1));
