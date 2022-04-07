@@ -25,7 +25,6 @@ function Key(props) {
         }
         else{dispatch(letterReducer(letter,1,1))}
  
-        //TODO2: implement enter and delete key
     }
 
     return (
