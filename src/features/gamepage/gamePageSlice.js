@@ -34,7 +34,18 @@ export const gamePageSlice = createSlice({
 
         letterReducer: {
             reducer: (state, action) => {
-                state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${action.payload.col}`] = action.payload.value;
+                let currentRow = state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues
+                let col = 1
+                for (let letter of Object.values(currentRow)){
+                    if (!letter){
+                        break
+                    } else {
+                        col+=1
+                    }
+                }
+                if(col <= state.wordLength){
+                state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${col}`] = action.payload.value;
+                }
             },
             prepare: (value, row, col) => ({payload: {value, row, col}})
         },
