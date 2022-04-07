@@ -1,3 +1,5 @@
+import {currentDiffDictionary} from "./currentDifficultyDictionary";
+
 function initialRowState(wordLength) {
     let rowState = {
         validated: false,
@@ -15,11 +17,15 @@ function initialRowState(wordLength) {
 
 export function getInitialStateFromLengthTries(wordLength, tries) {
 
+    let currentDictionary = currentDiffDictionary(wordLength);
+    let currentDictionaryLength = currentDictionary.length;
+    let randomSolution = currentDictionary[Math.floor(Math.random() * currentDictionaryLength)].toUpperCase();
+
     let initState = {
         difficulty: (wordLength === 5) ? 'easy' : ((wordLength === 6) ? 'medium' : 'hard'),
         wordLength: wordLength,
         tries: tries,
-        solution: (wordLength === 5) ? 'LEARN' : ((wordLength === 6) ? 'LEARNT' : 'LEARNED'),
+        solution: randomSolution,
         win: false,
         lose: false,
         gridState: {

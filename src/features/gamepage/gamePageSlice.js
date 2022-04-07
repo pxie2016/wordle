@@ -1,9 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {getInitialStateFromLengthTries} from '../../utils/getInitialStateFromLengthTries';
-import {fiveLetterWords} from "../../dictionaries/fiveLetterWords";
-import {sixLetterWords} from "../../dictionaries/sixLetterWords";
-import {sevenLetterWords} from "../../dictionaries/sevenLetterWords";
 import {validateRow} from "../../utils/validateRow";
+import {currentDiffDictionary} from "../../utils/currentDifficultyDictionary";
 
 const initialState = {};
 
@@ -60,7 +58,7 @@ export const gamePageSlice = createSlice({
         validate: (state) => {
             let currActiveRowName = 'row' + String(currentActiveRowNumber(state));
             let currRowWord = letterValuesToWord(state, currActiveRowName);
-            if (currentDiffDictionary(state).includes(currRowWord)) {
+            if (currentDiffDictionary(state.wordLength).includes(currRowWord)) {
                 state.gridState.byRow[currActiveRowName].letterColors =
                     validateRow(state.gridState.byRow[currActiveRowName].letterValues, state.solution);
                 state.gridState.byRow[currActiveRowName].validated = true;
@@ -100,10 +98,6 @@ function letterValuesToWord(state, currActiveRow) {
         currRowWord += char.toLowerCase();
     }
     return currRowWord;
-}
-
-function currentDiffDictionary(state) {
-    return (state.difficulty === 'easy') ? fiveLetterWords : ((state.difficulty === 'medium') ? sixLetterWords : sevenLetterWords);
 }
 
 export const {
