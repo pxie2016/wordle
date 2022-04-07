@@ -1,19 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {exampleReducer, selectRowColors, selectRowValues} from './gamePageSlice.js';
+import {exampleReducer, selectRowColors, selectRowValues, validate} from './gamePageSlice.js';
 import Letter from '../letter/Letter.js';
 import './GamePage.css';
 import {Link} from "react-router-dom";
 import {store} from "../../app/store";
 
-import {validateRow} from "../../utils/validateRow";
-
 export function GamePage() {
 
   const dispatch = useDispatch();
   console.log(store.getState());
-  console.log(validateRow({letter1: "A", letter2: "B", letter3: "B", letter4: "B", letter5: "E"}, 'ABCEB'));
-
   const values = useSelector(state => selectRowValues(state, 1));
   const colors = useSelector(state => selectRowColors(state, 1));
 
@@ -34,11 +30,16 @@ export function GamePage() {
   return (
     <div className="gamepage" >
 
-      <div className="exampleWord" onClick={() => dispatch(exampleReducer())}>
+      <div className="exampleWord" onClick={() => {
+          dispatch(exampleReducer());
+          dispatch(validate());
+      }}>
           {content}
       </div>
 
-      <div className="exampleWord">
+      <div className="exampleWord" onClick={() => {
+          dispatch(validate());
+      }}>
           {content2}
       </div>
 

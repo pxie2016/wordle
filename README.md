@@ -5,6 +5,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 GOOGLE DOC
 https://docs.google.com/document/d/1s2Rq_cFp7tk-VLfq7B5mygmJd_0TGDJJuVEV10_pRxQ/edit
 
+The five-letter words used in this project are from [Donald E. Knuth's](https://www-cs-faculty.stanford.edu/~knuth/)
+[GraphBase list of five-letter words](https://www-cs-faculty.stanford.edu/~knuth/sgb-words.txt).
+
 In the project directory, you can run:
 
 ### `npm start`
