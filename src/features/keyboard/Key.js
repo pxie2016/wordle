@@ -1,7 +1,7 @@
 import React from 'react'
 import './Keyboard.css'
 import {useDispatch} from "react-redux";
-import {letterReducer} from"../gamepage/gamePageSlice";
+import {letterReducer, deleteReducer, validate} from"../gamepage/gamePageSlice";
 function Key(props) {
     
     let className='key'
@@ -14,9 +14,17 @@ function Key(props) {
 
     
     function handleOnclick(letter){
-        //TODO1: change hardcoded position(row2,letter1) to real-time game position
-        dispatch(letterReducer(letter,1,1))
-        //TODO2: implement enter and delete key
+        if(props.class){
+            if(props.keyValue === "Delete"){
+                dispatch(deleteReducer(1))
+        }
+            else{
+                dispatch(validate())
+            }
+
+        }
+        else{dispatch(letterReducer(letter,1,1))}
+ 
     }
 
     return (

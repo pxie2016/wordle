@@ -38,20 +38,25 @@ export const gamePageSlice = createSlice({
 
         letterReducer: {
             reducer: (state, action) => {
-                let currentRow = state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues
-                let col = 1
-                for (let letter of Object.values(currentRow)){
-                    if (!letter){
-                        break
-                    } else {
-                        col+=1
-                    }
+                if (!state.gridState.byRow[state.gridState.allRows[action.payload.row]].validated){
+                let currentCol = currentLetter(state,action.payload.row)
+                if(currentCol <= state.wordLength){
+                state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${currentCol}`] = action.payload.value;
                 }
-                if(col <= state.wordLength){
-                state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${col}`] = action.payload.value;
-                }
+            }
             },
-            prepare: (value, row, col) => ({payload: {value, row, col}})
+            prepare: (value, row) => ({payload: {value, row}})
+        },
+
+        deleteReducer:(state, action)=>{
+            if (!state.gridState.byRow[state.gridState.allRows[action.payload]].validated){
+            let currentCol = currentLetter(state, action.payload)
+            if (currentCol>1){
+                state.gridState.byRow[state.gridState.allRows[action.payload]].letterValues[`letter${currentCol-1}`] = "";
+               
+            }
+        }
+  
         },
 
         validate: (state) => {
@@ -65,6 +70,17 @@ export const gamePageSlice = createSlice({
         }
     },
 });
+
+function currentLetter(state, currActiveRow){
+    let currentRow = state.gridState.byRow[state.gridState.allRows[currActiveRow]].letterValues
+    let col = 1
+    for (let letter of Object.values(currentRow)){
+        if (!letter){
+            break
+        } else {col+=1}
+    }
+    return col
+}
 
 function currentActiveRowNumber(state) {
     let answer = 1;
@@ -95,7 +111,8 @@ export const {
     exampleReducer,
     letterReducer,
     keyBoardReducer,
-    validate
+    validate,
+    deleteReducer
 } = gamePageSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
