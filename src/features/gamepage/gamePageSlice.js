@@ -1,9 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {getInitialStateFromLengthTries} from '../../utils/getInitialStateFromLengthTries';
-import {fiveLetterWords} from "../../dictionaries/fiveLetterWords";
-import {sixLetterWords} from "../../dictionaries/sixLetterWords";
-import {sevenLetterWords} from "../../dictionaries/sevenLetterWords";
 import {validateRow} from "../../utils/validateRow";
+import {currentDiffDictionary} from "../../utils/currentDifficultyDictionary";
 
 const initialState = {};
 
@@ -38,31 +36,29 @@ export const gamePageSlice = createSlice({
 
         letterReducer: {
             reducer: (state, action) => {
-                if (!state.gridState.byRow[state.gridState.allRows[action.payload.row]].validated){
-                let currentCol = currentLetter(state,action.payload.row)
-                if(currentCol <= state.wordLength){
-                state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${currentCol}`] = action.payload.value;
+                if (!state.gridState.byRow[state.gridState.allRows[action.payload.row]].validated) {
+                    let currentCol = currentLetter(state, action.payload.row)
+                    if (currentCol <= state.wordLength) {
+                        state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${currentCol}`] = action.payload.value;
+                    }
                 }
-            }
             },
             prepare: (value, row) => ({payload: {value, row}})
         },
 
-        deleteReducer:(state, action)=>{
-            if (!state.gridState.byRow[state.gridState.allRows[action.payload]].validated){
-            let currentCol = currentLetter(state, action.payload)
-            if (currentCol>1){
-                state.gridState.byRow[state.gridState.allRows[action.payload]].letterValues[`letter${currentCol-1}`] = "";
-               
+        deleteReducer: (state, action) => {
+            if (!state.gridState.byRow[state.gridState.allRows[action.payload]].validated) {
+                let currentCol = currentLetter(state, action.payload)
+                if (currentCol > 1) {
+                    state.gridState.byRow[state.gridState.allRows[action.payload]].letterValues[`letter${currentCol - 1}`] = "";
+                }
             }
-        }
-  
         },
 
         validate: (state) => {
             let currActiveRowName = 'row' + String(currentActiveRowNumber(state));
             let currRowWord = letterValuesToWord(state, currActiveRowName);
-            if (currentDiffDictionary(state).includes(currRowWord)) {
+            if (currentDiffDictionary(state.wordLength).includes(currRowWord)) {
                 state.gridState.byRow[currActiveRowName].letterColors =
                     validateRow(state.gridState.byRow[currActiveRowName].letterValues, state.solution);
                 state.gridState.byRow[currActiveRowName].validated = true;
@@ -71,13 +67,15 @@ export const gamePageSlice = createSlice({
     },
 });
 
-function currentLetter(state, currActiveRow){
+function currentLetter(state, currActiveRow) {
     let currentRow = state.gridState.byRow[state.gridState.allRows[currActiveRow]].letterValues
     let col = 1
-    for (let letter of Object.values(currentRow)){
-        if (!letter){
+    for (let letter of Object.values(currentRow)) {
+        if (!letter) {
             break
-        } else {col+=1}
+        } else {
+            col += 1
+        }
     }
     return col
 }
@@ -85,8 +83,11 @@ function currentLetter(state, currActiveRow){
 function currentActiveRowNumber(state) {
     let answer = 1;
     for (let row of state.gridState.allRows) {
-        if (state.gridState.byRow[row].validated) {answer++;}
-        else {return answer;}
+        if (state.gridState.byRow[row].validated) {
+            answer++;
+        } else {
+            return answer;
+        }
     }
     return -1;
 }
@@ -97,10 +98,6 @@ function letterValuesToWord(state, currActiveRow) {
         currRowWord += char.toLowerCase();
     }
     return currRowWord;
-}
-
-function currentDiffDictionary(state) {
-    return (state.difficulty === 'easy') ? fiveLetterWords : ((state.difficulty === 'medium') ? sixLetterWords : sevenLetterWords);
 }
 
 export const {
@@ -118,12 +115,12 @@ export const {
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
-export const selectSolution = (state) => state.solution;
-export const selectWin = (state) => state.win;
-export const selectLose = (state) => state.lose;
-export const selectDifficulty = (state) => state.difficulty;
-export const selectWordLength = (state) => state.wordLength;
-export const selectTries = (state) => state.tries;
+export const selectSolution = (state) => state.gamepage.solution;
+export const selectWin = (state) => state.gamepage.win;
+export const selectLose = (state) => state.gamepage.lose;
+export const selectDifficulty = (state) => state.gamepage.difficulty;
+export const selectWordLength = (state) => state.gamepage.wordLength;
+export const selectTries = (state) => state.gamepage.tries;
 export const selectRowValues = (state, rowNumber) => {
     return state.gamepage.gridState.byRow[state.gamepage.gridState.allRows[rowNumber - 1]].letterValues;
 };

@@ -3,8 +3,8 @@ import './Keyboard.css'
 import Key from './Key'
 
 function Keyboard() {
-    const keys1 =["Q","W", "E","R","T","Y","U","I","O","P"]
-    const keys2 =["A","S", "D","F","G","H","J","K","L"]
+    const keys1 =["Q","W","E","R","T","Y","U","I","O","P"]
+    const keys2 =["A","S","D","F","G","H","J","K","L"]
     const keys3 =["Z","X","C","V","B","N","M"]
     
     return (
@@ -34,4 +34,4 @@ function Keyboard() {
   )
 }
 
-export default Keyboard
+export default Keyboard;
