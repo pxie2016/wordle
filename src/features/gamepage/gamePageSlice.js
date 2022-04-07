@@ -1,5 +1,9 @@
 import {createSlice} from '@reduxjs/toolkit';
 import {getInitialStateFromLengthTries} from '../../utils/getInitialStateFromLengthTries';
+import {fiveLetterWords} from "../../dictionaries/fiveLetterWords";
+import {sixLetterWords} from "../../dictionaries/sixLetterWords";
+import {sevenLetterWords} from "../../dictionaries/sevenLetterWords";
+import {validateRow} from "../../utils/validateRow";
 
 const initialState = {};
 
@@ -8,13 +12,13 @@ export const gamePageSlice = createSlice({
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
-        initEasy() {
+        initEasy: () => {
             return getInitialStateFromLengthTries(5, 7);
         },
-        initMedium() {
+        initMedium: () => {
             return getInitialStateFromLengthTries(6, 6);
         },
-        initHard() {
+        initHard: () => {
             return getInitialStateFromLengthTries(7, 5);
         },
         setWin: (state) => {
@@ -25,11 +29,11 @@ export const gamePageSlice = createSlice({
         },
         // Example; to be deleted for keyboard-based reducer logic in the (near) future
         exampleReducer: (state) => {
-            state.gridState.byRow[state.gridState.allRows[0]].validated = true;
+            //state.gridState.byRow[state.gridState.allRows[0]].validated = true;
             Object.assign(state.gridState.byRow[state.gridState.allRows[0]].letterValues,
-                {letter1: 'Y', letter2: 'E', letter3: 'A', letter4: 'R', letter5: 'N'});
-            Object.assign(state.gridState.byRow[state.gridState.allRows[0]].letterColors,
-                {letter1: 'grey', letter2: 'green', letter3: 'green', letter4: 'green', letter5: 'green'});
+                {letter1: 'L', letter2: 'E', letter3: 'A', letter4: 'R', letter5: 'N'});
+            //Object.assign(state.gridState.byRow[state.gridState.allRows[0]].letterColors,
+            //    {letter1: 'grey', letter2: 'green', letter3: 'green', letter4: 'green', letter5: 'green'});
         },
 
         letterReducer: {
@@ -50,13 +54,38 @@ export const gamePageSlice = createSlice({
             prepare: (value, row, col) => ({payload: {value, row, col}})
         },
 
-        validate: {
-            reducer: (state, action) => {
-                // TODO: use the validateRow.js helper in the behavior of the "Enter" key
+        validate: (state) => {
+            let currActiveRowName = 'row' + String(currentActiveRowNumber(state));
+            let currRowWord = letterValuesToWord(state, currActiveRowName);
+            if (currentDiffDictionary(state).includes(currRowWord)) {
+                state.gridState.byRow[currActiveRowName].letterColors =
+                    validateRow(state.gridState.byRow[currActiveRowName].letterValues, state.solution);
+                state.gridState.byRow[currActiveRowName].validated = true;
             }
         }
     },
 });
+
+function currentActiveRowNumber(state) {
+    let answer = 1;
+    for (let row of state.gridState.allRows) {
+        if (state.gridState.byRow[row].validated) {answer++;}
+        else {return answer;}
+    }
+    return -1;
+}
+
+function letterValuesToWord(state, currActiveRow) {
+    let currRowWord = '';
+    for (let char of Object.values(state.gridState.byRow[currActiveRow].letterValues)) {
+        currRowWord += char.toLowerCase();
+    }
+    return currRowWord;
+}
+
+function currentDiffDictionary(state) {
+    return (state.difficulty === 'easy') ? fiveLetterWords : ((state.difficulty === 'medium') ? sixLetterWords : sevenLetterWords);
+}
 
 export const {
     initEasy,
@@ -65,7 +94,8 @@ export const {
     setLose,
     exampleReducer,
     letterReducer,
-    keyBoardReducer
+    keyBoardReducer,
+    validate
 } = gamePageSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
