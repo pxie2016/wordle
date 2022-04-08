@@ -16,26 +16,24 @@
     border-radius: 4px;
     margin: 5px;
     padding: 2px 2px;
-    box-shadow:
-        inset 0 -1px 0 #b4b3b3,
-        inset 0px 1px 1px -1px #fff,
-        0px 1px 1px 0px #848282;
-    transition:
-        transform 0.07s ease,
-        background-color 0.07s ease,
-        box-shadow 0.07s ease;
+    box-shadow: inset 0 -1px 0 #b4b3b3,
+    inset 0 1px 1px -1px #fff,
+    0 1px 1px 0 #848282;
+    transition: transform 0.07s ease,
+    background-color 0.07s ease,
+    box-shadow 0.07s ease;
 }
 
 .key:hover {
     background-color: #949c6d;
+    cursor: pointer;
 }
 
 .key:active {
     transform: translateY(1.5px);
-    box-shadow:
-        inset 0 -0.5px 0 #aaaaaa,
-        inset 0px -1px 1px -1px #fff,
-        0px 0.5px 0.75px 0px #999;
+    box-shadow: inset 0 -0.5px 0 #aaaaaa,
+    inset 0 -1px 1px -1px #fff,
+    0 0.5px 0.75px 0 #999;
 }
 
 .func {

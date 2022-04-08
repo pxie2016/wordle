@@ -34,14 +34,6 @@ export const gamePageSlice = createSlice({
         closeInvalidPop: (state) => {
             state.invalidPop = false;
         },
-        // Example; to be deleted for keyboard-based reducer logic in the (near) future
-        exampleReducer: (state) => {
-            //state.gridState.byRow[state.gridState.allRows[0]].validated = true;
-            Object.assign(state.gridState.byRow[state.gridState.allRows[0]].letterValues,
-                {letter1: 'L', letter2: 'E', letter3: 'A', letter4: 'R', letter5: 'N'});
-            //Object.assign(state.gridState.byRow[state.gridState.allRows[0]].letterColors,
-            //    {letter1: 'grey', letter2: 'green', letter3: 'green', letter4: 'green', letter5: 'green'});
-        },
 
         letterReducer: (state, action) => {
             let currActiveRow = currentActiveRowNumber(state) - 1;
@@ -108,7 +100,7 @@ function currentActiveRowNumber(state) {
             return answer;
         }
     }
-    return -1;
+    return -1; // This line is practically unreachable
 }
 
 function letterValuesToWord(state, currActiveRow) {
@@ -144,9 +136,7 @@ export const {
     rehydrate
 } = gamePageSlice.actions;
 
-// The function below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
+// Selectors
 export const selectSolution = (state) => state.gamepage.solution;
 export const selectWin = (state) => state.gamepage.win;
 export const selectLose = (state) => state.gamepage.lose;
@@ -154,7 +144,6 @@ export const selectWinPop = (state) => state.gamepage.winPop;
 export const selectLosePop = (state) => state.gamepage.losePop;
 export const selectInvalidPop = (state) => state.gamepage.invalidPop;
 export const selectDifficulty = (state) => state.gamepage.difficulty;
-export const selectWordLength = (state) => state.gamepage.wordLength;
 export const selectTries = (state) => state.gamepage.tries;
 export const selectRowValues = (state, rowNumber) => {
     return state.gamepage.gridState.byRow[state.gamepage.gridState.allRows[rowNumber - 1]].letterValues;

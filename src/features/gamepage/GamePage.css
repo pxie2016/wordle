@@ -1,18 +1,20 @@
 .refreshButton {
     display: flex;
     font-style: italic;
-    font-size: medium;
+    font-size: large;
     border-radius: 15px;
     border: 2px solid;
     margin: 10px;
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    width: 100px;
-    color: #656d4a
+    width: 8em;
+    height: 2em;
+    color: #656d4a;
 }
 
 .refreshButton:hover {
+    background-color: #949c6d;
     cursor: pointer;
 }
 

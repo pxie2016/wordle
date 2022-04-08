@@ -16,11 +16,7 @@
     width: 75%;
     height: 10%;
     margin: 0;
-}
-
-
-.difficulty {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }

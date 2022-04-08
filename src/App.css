@@ -1,35 +1,33 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100vw;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
 
 .title {
-  display: flex;
-  grid-area: title;
-  font-size: xxx-large;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Grape Nuts', cursive;
-  font-size: 5em;
-  font-weight: bold;
-  color: #414833;
+    display: flex;
+    grid-area: title;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    font-size: 5em;
+    font-weight: bold;
+    color: #414833;
 }
 
 .level {
-  width: 40%;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  flex-wrap: wrap;
+    width: 40%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .easy,
@@ -37,25 +35,38 @@
 .hard,
 .rules,
 .home {
-  display: flex;
-  font-style: italic;
-  font-size: x-large;
-  border-radius: 30px;
-  border: 2px solid;
-  margin: 10px;
-  justify-content: center;
-  align-items: center;
-  justify-self: stretch;
-  text-decoration: none;
-  width: 8em;
-  height: 2.5em;
-  color: #656d4a
+    display: flex;
+    font-style: italic;
+    border-radius: 30px;
+    border: 2px solid;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    justify-self: stretch;
+    text-decoration: none;
+    color: #656d4a;
+}
+
+.easy,
+.medium,
+.hard {
+    font-size: x-large;
+    height: 2.5em;
+    width: 8em;
 }
 
 .rules,
 .home {
-  grid-area: rules;
-  font-size: medium;
-  height: 2em;
-  width: 5em;
+    font-size: large;
+    height: 2em;
+    width: 5em;
+}
+
+.easy:hover,
+.medium:hover,
+.hard:hover,
+.rules:hover,
+.home:hover {
+    background-color: #949c6d;
+    cursor: pointer;
 }

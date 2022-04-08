@@ -38,7 +38,7 @@ export default function RulePage(){
         </table>
         <p>Each guess must be a valid word.</p>
         <p>Hit the <span className="highlight">Enter</span> button to submit.</p>
-        <p>Hit the <span className="highlight">Delete</span> button to delete a letter</p>
+        <p>Hit the <span className="highlight">Delete</span> button to delete a letter.</p>
         <p>Hit the <span className="highlight">Refresh</span> button to restart the game and try a new word.</p>
         <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
     
