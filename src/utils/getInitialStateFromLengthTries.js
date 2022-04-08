@@ -28,6 +28,9 @@ export function getInitialStateFromLengthTries(wordLength, tries) {
         solution: randomSolution,
         win: false,
         lose: false,
+        winPop:false,
+        losePop:false,
+        InvalidPop:false,
         gridState: {
             allRows: [],
             byRow: {}

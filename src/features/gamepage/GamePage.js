@@ -1,12 +1,18 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {exampleReducer, selectRowColors, selectRowValues, selectTries, validate} from './gamePageSlice.js';
+import {closeWinPop, selectWinPop, closeInvalidPop, selectLosePop, closeLosePop, selectInvalidPop, selectRowColors, selectRowValues, selectTries, selectSolution} from './gamePageSlice.js';
 import Letter from '../letter/Letter.js';
 import './GamePage.css';
 import {Link} from "react-router-dom";
 import {store} from "../../app/store";
+import Popup from '../popup/Popup.js';
 
 export function GamePage() {
+
+    const winPopState = useSelector(state => selectWinPop(state));
+    const losePopState = useSelector(state => selectLosePop(state));
+    const invalidPopState = useSelector(state => selectInvalidPop(state));
+    const solusion = useSelector(state => selectSolution(state));
 
     const dispatch = useDispatch();
     console.log(store.getState());
@@ -23,8 +29,8 @@ export function GamePage() {
             return <Letter key={element} value={values[element]} color={colors[element]}/>
         });
         renderContent.push(
-            <div className="exampleWord" key={"row" + String(i + 1)}
-                 onClick={() => dispatch(validate())}>{content}</div>
+            <div className="word" key={"row" + String(i + 1)}
+                 >{content}</div>
         );
     }
 
@@ -32,6 +38,9 @@ export function GamePage() {
         <div className="gamepage">
             {renderContent}
             <Link to={"/"} className="home">Back to home</Link>
+            <Popup trigger={winPopState} content="Congratulation!!!" close={()=>dispatch(closeWinPop())}></Popup>
+            <Popup trigger={invalidPopState} content="Please enter a valid word!" close={()=>dispatch(closeInvalidPop())}></Popup>
+            <Popup trigger={losePopState} content={`You lose~ The correct answer is ${solusion}!!`} close={()=>dispatch(closeLosePop())}></Popup>
         </div>
     );
 }

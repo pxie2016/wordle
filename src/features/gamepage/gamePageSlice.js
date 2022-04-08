@@ -25,6 +25,15 @@ export const gamePageSlice = createSlice({
         setLose: (state) => {
             state.lose = true;
         },
+        closeWinPop: (state) => {
+            state.winPop = false;
+        },
+        closeLosePop: (state) => {
+            state.losePop = false;
+        },
+        closeInvalidPop: (state) => {
+            state.invalidPop = false;
+        },
         // Example; to be deleted for keyboard-based reducer logic in the (near) future
         exampleReducer: (state) => {
             //state.gridState.byRow[state.gridState.allRows[0]].validated = true;
@@ -36,21 +45,23 @@ export const gamePageSlice = createSlice({
 
         letterReducer: {
             reducer: (state, action) => {
-                if (!state.gridState.byRow[state.gridState.allRows[action.payload.row]].validated) {
-                    let currentCol = currentLetter(state, action.payload.row)
+                let currActiveRow = currentActiveRowNumber(state)-1;
+                if (!state.gridState.byRow[state.gridState.allRows[currActiveRow]].validated) {
+                    let currentCol = currentLetter(state, currActiveRow)
                     if (currentCol <= state.wordLength) {
-                        state.gridState.byRow[state.gridState.allRows[action.payload.row]].letterValues[`letter${currentCol}`] = action.payload.value;
+                        state.gridState.byRow[state.gridState.allRows[currActiveRow]].letterValues[`letter${currentCol}`] = action.payload.value;
                     }
                 }
             },
             prepare: (value, row) => ({payload: {value, row}})
         },
 
-        deleteReducer: (state, action) => {
-            if (!state.gridState.byRow[state.gridState.allRows[action.payload]].validated) {
-                let currentCol = currentLetter(state, action.payload)
+        deleteReducer: (state) => {
+            let currActiveRow = currentActiveRowNumber(state)-1;
+            if (!state.gridState.byRow[state.gridState.allRows[currActiveRow]].validated) {
+                let currentCol = currentLetter(state, currActiveRow)
                 if (currentCol > 1) {
-                    state.gridState.byRow[state.gridState.allRows[action.payload]].letterValues[`letter${currentCol - 1}`] = "";
+                    state.gridState.byRow[state.gridState.allRows[currActiveRow]].letterValues[`letter${currentCol - 1}`] = "";
                 }
             }
         },
@@ -62,6 +73,18 @@ export const gamePageSlice = createSlice({
                 state.gridState.byRow[currActiveRowName].letterColors =
                     validateRow(state.gridState.byRow[currActiveRowName].letterValues, state.solution);
                 state.gridState.byRow[currActiveRowName].validated = true;
+            } else {
+                state.invalidPop = true
+            }
+
+            let isWin = checkWin(state,currActiveRowName);
+            if(isWin){
+                state.win = true
+                state.winPop = true
+            } 
+            else if (state.gridState.byRow[`row${state.tries}`].validated){
+                state.lose=true
+                state.losePop = true
             }
         }
     },
@@ -100,6 +123,15 @@ function letterValuesToWord(state, currActiveRow) {
     return currRowWord;
 }
 
+function checkWin(state, currActiveRow){
+    for (let color of Object.values(state.gridState.byRow[currActiveRow].letterColors)) {
+        if(color !== 'green'){
+            return false
+        }
+    }
+    return true
+}
+
 export const {
     initEasy,
     initMedium,
@@ -109,7 +141,10 @@ export const {
     letterReducer,
     keyBoardReducer,
     validate,
-    deleteReducer
+    deleteReducer,
+    closeWinPop,
+    closeLosePop,
+    closeInvalidPop
 } = gamePageSlice.actions;
 
 // The function below is called a selector and allows us to select a value from
@@ -118,6 +153,9 @@ export const {
 export const selectSolution = (state) => state.gamepage.solution;
 export const selectWin = (state) => state.gamepage.win;
 export const selectLose = (state) => state.gamepage.lose;
+export const selectWinPop = (state) => state.gamepage.winPop;
+export const selectLosePop = (state) => state.gamepage.losePop;
+export const selectInvalidPop = (state) => state.gamepage.invalidPop;
 export const selectDifficulty = (state) => state.gamepage.difficulty;
 export const selectWordLength = (state) => state.gamepage.wordLength;
 export const selectTries = (state) => state.gamepage.tries;
