@@ -1,6 +1,18 @@
 import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {closeWinPop, selectWinPop, closeInvalidPop, selectLosePop, closeLosePop, selectInvalidPop, selectRowColors, selectRowValues, selectTries, selectSolution} from './gamePageSlice.js';
+import {
+    closeWinPop,
+    selectWinPop,
+    closeInvalidPop,
+    selectLosePop,
+    closeLosePop,
+    selectInvalidPop,
+    selectRowColors,
+    selectRowValues,
+    selectTries,
+    selectSolution,
+    selectDifficulty
+} from './gamePageSlice.js';
 import Letter from '../letter/Letter.js';
 import './GamePage.css';
 import {Link} from "react-router-dom";
@@ -8,7 +20,6 @@ import {store} from "../../app/store";
 import Popup from '../popup/Popup.js';
 
 export function GamePage() {
-
     const winPopState = useSelector(state => selectWinPop(state));
     const losePopState = useSelector(state => selectLosePop(state));
     const invalidPopState = useSelector(state => selectInvalidPop(state));
@@ -38,9 +49,11 @@ export function GamePage() {
         <div className="gamepage">
             {renderContent}
             <Link to={"/"} className="home">Back to home</Link>
+            {/* eslint-disable-next-line no-restricted-globals */}
+            <div className="refreshButton" onClick={() => location.reload()}>Refresh</div>
             <Popup trigger={winPopState} content="Congratulations! " close={() => dispatch(closeWinPop())}/>
-            <Popup trigger={invalidPopState} content="Please enter a valid word!" close={() => dispatch(closeInvalidPop())}/>
-            <Popup trigger={losePopState} content={`You lose~ The correct answer is ${solution}!!`} close={() => dispatch(closeLosePop())}/>
+            <Popup trigger={invalidPopState} content="Word not in dictionary." close={() => dispatch(closeInvalidPop())}/>
+            <Popup trigger={losePopState} content={`The correct answer is ${solution}.`} close={() => dispatch(closeLosePop())}/>
         </div>
     );
 }
