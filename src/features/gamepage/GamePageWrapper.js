@@ -7,19 +7,24 @@ import {useDispatch} from "react-redux";
 import {initEasy, initMedium, initHard} from "./gamePageSlice";
 import Keyboard from "../keyboard/Keyboard";
 import {store} from "../../app/store";
+import {saveState} from "../../localStorage";
 
 export function GamePageWrapper() {
     let difficultyObject = useParams();
-    let currDiff = difficultyObject.difficulty;
+    let pageDiff = difficultyObject.difficulty;
     const dispatch = useDispatch();
-    if (Object.keys(store.getState().gamepage).length === 0) {
-        dispatch(currDiff === 'easy' ? initEasy() : (currDiff === 'medium') ? initMedium() : initHard());
+    if (Object.keys(store.getState().gamepage).length === 0 || store.getState().gamepage.difficulty !== pageDiff) {
+        dispatch(pageDiff === 'easy' ? initEasy() : (pageDiff === 'medium') ? initMedium() : initHard());
     }
+    store.subscribe(() => {
+            saveState(store.getState());
+        }
+    );
 
     return (
         <div className="gamepagewrapper">
             <h1>This is just a wrapper of the actual GamePage!</h1>
-            <h2>The difficulty is {currDiff}</h2>
+            <h2>The difficulty is {pageDiff}</h2>
             <GamePage/>
 
             <div>

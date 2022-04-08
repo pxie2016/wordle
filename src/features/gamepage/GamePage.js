@@ -15,14 +15,8 @@ import {
 import Letter from '../letter/Letter.js';
 import './GamePage.css';
 import {Link} from "react-router-dom";
-import {store} from "../../app/store";
 import Popup from '../popup/Popup.js';
-import {saveState} from "../../localStorage";
 
-store.subscribe(() => {
-        saveState(store.getState());
-    }
-);
 
 export function GamePage() {
     const currentDifficulty = useSelector(selectDifficulty);
