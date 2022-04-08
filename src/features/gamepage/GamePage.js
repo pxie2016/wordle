@@ -12,7 +12,7 @@ export function GamePage() {
     const winPopState = useSelector(state => selectWinPop(state));
     const losePopState = useSelector(state => selectLosePop(state));
     const invalidPopState = useSelector(state => selectInvalidPop(state));
-    const solusion = useSelector(state => selectSolution(state));
+    const solution = useSelector(state => selectSolution(state));
 
     const dispatch = useDispatch();
     console.log(store.getState());
@@ -38,9 +38,9 @@ export function GamePage() {
         <div className="gamepage">
             {renderContent}
             <Link to={"/"} className="home">Back to home</Link>
-            <Popup trigger={winPopState} content="Congratulation!!!" close={()=>dispatch(closeWinPop())}></Popup>
-            <Popup trigger={invalidPopState} content="Please enter a valid word!" close={()=>dispatch(closeInvalidPop())}></Popup>
-            <Popup trigger={losePopState} content={`You lose~ The correct answer is ${solusion}!!`} close={()=>dispatch(closeLosePop())}></Popup>
+            <Popup trigger={winPopState} content="Congratulations! " close={() => dispatch(closeWinPop())}/>
+            <Popup trigger={invalidPopState} content="Please enter a valid word!" close={() => dispatch(closeInvalidPop())}/>
+            <Popup trigger={losePopState} content={`You lose~ The correct answer is ${solution}!!`} close={() => dispatch(closeLosePop())}/>
         </div>
     );
 }
