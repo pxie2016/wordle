@@ -22,7 +22,7 @@ function Key(props) {
             }
 
         } else {
-            dispatch(letterReducer(letter, 0, 1))
+            dispatch(letterReducer(letter))
         }
 
     }

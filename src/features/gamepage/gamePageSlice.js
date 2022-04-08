@@ -43,17 +43,14 @@ export const gamePageSlice = createSlice({
             //    {letter1: 'grey', letter2: 'green', letter3: 'green', letter4: 'green', letter5: 'green'});
         },
 
-        letterReducer: {
-            reducer: (state, action) => {
-                let currActiveRow = currentActiveRowNumber(state)-1;
-                if (!state.gridState.byRow[state.gridState.allRows[currActiveRow]].validated) {
-                    let currentCol = currentLetter(state, currActiveRow)
-                    if (currentCol <= state.wordLength) {
-                        state.gridState.byRow[state.gridState.allRows[currActiveRow]].letterValues[`letter${currentCol}`] = action.payload.value;
-                    }
+        letterReducer:(state, action)=> {
+            let currActiveRow = currentActiveRowNumber(state)-1;
+            if (!state.gridState.byRow[state.gridState.allRows[currActiveRow]].validated && !state.win) {
+                let currentCol = currentLetter(state, currActiveRow)
+                if (currentCol <= state.wordLength) {
+                    state.gridState.byRow[state.gridState.allRows[currActiveRow]].letterValues[`letter${currentCol}`] = action.payload;
                 }
-            },
-            prepare: (value, row) => ({payload: {value, row}})
+            }
         },
 
         deleteReducer: (state) => {
