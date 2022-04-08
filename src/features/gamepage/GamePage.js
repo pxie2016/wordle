@@ -55,7 +55,9 @@ export function GamePage() {
             <div>
                 <Keyboard/>
             </div>
+            <br></br>
             <Link to={"/"} className="home">Back to home</Link>
+            <br></br>
             <div className="refreshButton" onClick={() => {
                 dispatch(
                     currentDifficulty === 'easy' ? initEasy() : (currentDifficulty === 'medium' ? initMedium() : initHard()));

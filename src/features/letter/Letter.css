@@ -24,3 +24,11 @@
     background-color: #3a3a3C;
     color: white
 }
+
+@media (max-width:500px) {
+    .letter {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+}
