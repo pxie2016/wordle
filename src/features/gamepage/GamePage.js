@@ -44,7 +44,7 @@ export function GamePage() {
         });
         renderContent.push(
             <div className="word" key={"row" + String(i + 1)}
-                 >{content}</div>
+            >{content}</div>
         );
     }
 
@@ -52,13 +52,16 @@ export function GamePage() {
         <div className="gamepage">
             {renderContent}
             <Link to={"/"} className="home">Back to home</Link>
-            {/* eslint-disable-next-line no-restricted-globals */}
-            <div className="refreshButton" onClick={() => {dispatch(
-                currentDifficulty === 'easy' ? initEasy() : (currentDifficulty === 'medium' ? initMedium() : initHard()));
-            }}>Refresh</div>
+            <div className="refreshButton" onClick={() => {
+                dispatch(
+                    currentDifficulty === 'easy' ? initEasy() : (currentDifficulty === 'medium' ? initMedium() : initHard()));
+            }}>Refresh
+            </div>
             <Popup trigger={winPopState} content="Congratulations!" close={() => dispatch(closeWinPop())}/>
-            <Popup trigger={invalidPopState} content="Word not in dictionary." close={() => dispatch(closeInvalidPop())}/>
-            <Popup trigger={losePopState} content={`The correct answer is ${solution}.`} close={() => dispatch(closeLosePop())}/>
+            <Popup trigger={invalidPopState} content="Word not in dictionary."
+                   close={() => dispatch(closeInvalidPop())}/>
+            <Popup trigger={losePopState} content={`The correct answer is ${solution}.`}
+                   close={() => dispatch(closeLosePop())}/>
         </div>
     );
 }

@@ -43,8 +43,8 @@ export const gamePageSlice = createSlice({
             //    {letter1: 'grey', letter2: 'green', letter3: 'green', letter4: 'green', letter5: 'green'});
         },
 
-        letterReducer:(state, action)=> {
-            let currActiveRow = currentActiveRowNumber(state)-1;
+        letterReducer: (state, action) => {
+            let currActiveRow = currentActiveRowNumber(state) - 1;
             if (!state.gridState.byRow[state.gridState.allRows[currActiveRow]].validated && !state.win) {
                 let currentCol = currentLetter(state, currActiveRow)
                 if (currentCol <= state.wordLength) {
@@ -54,7 +54,7 @@ export const gamePageSlice = createSlice({
         },
 
         deleteReducer: (state) => {
-            let currActiveRow = currentActiveRowNumber(state)-1;
+            let currActiveRow = currentActiveRowNumber(state) - 1;
             if (!state.gridState.byRow[state.gridState.allRows[currActiveRow]].validated) {
                 let currentCol = currentLetter(state, currActiveRow)
                 if (currentCol > 1) {
@@ -74,13 +74,12 @@ export const gamePageSlice = createSlice({
                 state.invalidPop = true
             }
 
-            let isWin = checkWin(state,currActiveRowName);
-            if(isWin){
+            let isWin = checkWin(state, currActiveRowName);
+            if (isWin) {
                 state.win = true
                 state.winPop = true
-            } 
-            else if (state.gridState.byRow[`row${state.tries}`].validated){
-                state.lose=true
+            } else if (state.gridState.byRow[`row${state.tries}`].validated) {
+                state.lose = true
                 state.losePop = true
             }
         }
@@ -120,9 +119,9 @@ function letterValuesToWord(state, currActiveRow) {
     return currRowWord;
 }
 
-function checkWin(state, currActiveRow){
+function checkWin(state, currActiveRow) {
     for (let color of Object.values(state.gridState.byRow[currActiveRow].letterColors)) {
-        if(color !== 'green'){
+        if (color !== 'green') {
             return false
         }
     }

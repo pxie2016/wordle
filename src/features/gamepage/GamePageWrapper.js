@@ -20,10 +20,10 @@ export function GamePageWrapper() {
         <div className="gamepagewrapper">
             <h1>This is just a wrapper of the actual GamePage!</h1>
             <h2>The difficulty is {currDiff}</h2>
-            <GamePage />
+            <GamePage/>
 
             <div>
-                <Keyboard />
+                <Keyboard/>
             </div>
         </div>
     )

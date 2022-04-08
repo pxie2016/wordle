@@ -1,4 +1,3 @@
-// TODO: Adjust this into a reducer as appropriate
 export function validateRow(letterValue, truth) {
     let wordLength = truth.length;
     let outputColor = {};
