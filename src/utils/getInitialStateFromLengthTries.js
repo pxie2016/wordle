@@ -15,6 +15,8 @@ function initialRowState(wordLength) {
     return rowState;
 }
 
+// This state object is inspired by
+// https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
 export function getInitialStateFromLengthTries(wordLength, tries) {
 
     let currentDictionary = currentDiffDictionary(wordLength);
@@ -28,9 +30,9 @@ export function getInitialStateFromLengthTries(wordLength, tries) {
         solution: randomSolution,
         win: false,
         lose: false,
-        winPop:false,
-        losePop:false,
-        InvalidPop:false,
+        winPop: false,
+        losePop: false,
+        invalidPop: false,
         gridState: {
             allRows: [],
             byRow: {}
@@ -45,54 +47,3 @@ export function getInitialStateFromLengthTries(wordLength, tries) {
     return initState;
 
 }
-
-
-/*
-const initialState = {
-    solution: 'LEARN',
-    win: false,
-    lose: false,
-
-    // This state object is inspired by
-    // https://redux.js.org/usage/structuring-reducers/normalizing-state-shape
-    gridState: {
-        allRows: ['row1', 'row2', 'row3', 'row4', 'row5', 'row6', 'row7'],
-        byRow: {
-            row1: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-            row2: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-            row3: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-            row4: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-            row5: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-            row6: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-            row7: {
-                validated: false,
-                letterValues: ['', '', '', '', ''],
-                letterColors: ['', '', '', '', ''],
-            },
-        },
-    },
-} */

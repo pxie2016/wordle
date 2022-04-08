@@ -6,12 +6,15 @@ import {GamePage} from "./GamePage";
 import {useDispatch} from "react-redux";
 import {initEasy, initMedium, initHard} from "./gamePageSlice";
 import Keyboard from "../keyboard/Keyboard";
+import {store} from "../../app/store";
 
 export function GamePageWrapper() {
     let difficultyObject = useParams();
     let currDiff = difficultyObject.difficulty;
     const dispatch = useDispatch();
-    dispatch(currDiff === 'easy' ? initEasy() : (currDiff === 'medium') ? initMedium() : initHard());
+    if (Object.keys(store.getState().gamepage).length === 0) {
+        dispatch(currDiff === 'easy' ? initEasy() : (currDiff === 'medium') ? initMedium() : initHard());
+    }
 
     return (
         <div className="gamepagewrapper">
