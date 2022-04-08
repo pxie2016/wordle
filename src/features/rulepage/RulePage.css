@@ -8,12 +8,13 @@
     text-align: center;
 }
 
-.exampleWord {
+.word {
     margin: 20px;
     max-width: 300px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+
 }
 
 .home {

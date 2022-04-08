@@ -1,0 +1,29 @@
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(233, 222, 137, 0.448);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.pop-content {
+    position: relative;
+    padding: 32px;
+    width: 100%;
+    max-width: 640px;
+    background-color: rgba(232, 217, 103, 0.826);
+    color: rgb(100, 160, 95);
+    font-size: 2em;
+}
+
+.pop-content .close-button {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}

@@ -17,7 +17,7 @@ export default function RulePage(){
     
     <p>Examples:</p>
     
-    <div className="exampleWord">
+    <div className="word">
         <Letter value={"W"} color={"green"}/>
         <Letter value={"E"} color={""}/>
         <Letter value={"A"} color={""}/>
@@ -26,7 +26,7 @@ export default function RulePage(){
     </div>
     
     <p>The letter W is in the word and in the correct spot.</p>
-    <div className="exampleWord">
+    <div className="word">
         <Letter value={"P"} color={""}/>
         <Letter value={"I"} color={"yellow"}/>
         <Letter value={"L"} color={""}/>
@@ -36,7 +36,7 @@ export default function RulePage(){
 
     <p>The letter I is in the word but in the wrong spot.</p>
     
-    <div className="exampleWord">
+    <div className="word">
         <Letter value={"V"} color={""}/>
         <Letter value={"A"} color={""}/>
         <Letter value={"G"} color={""}/>

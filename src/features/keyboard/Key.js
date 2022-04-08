@@ -16,13 +16,13 @@ function Key(props) {
     function handleOnclick(letter) {
         if (props.class) {
             if (props.keyValue === "Delete") {
-                dispatch(deleteReducer(0))
+                dispatch(deleteReducer())
             } else {
                 dispatch(validate())
             }
 
         } else {
-            dispatch(letterReducer(letter, 0, 1))
+            dispatch(letterReducer(letter))
         }
 
     }
