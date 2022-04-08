@@ -1,23 +1,26 @@
-.letter{
-    width: 40px;
-    height: 40px;
-    border: 2.5px solid grey;
-    margin: 0; 
+.letter {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #a4ac86;
+    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.8em;
     font-family: Arial, sans-serif;
 }
-.green{
+
+.green {
     background-color: #538d4e;
-    color:white
+    color: white
 }
-.yellow{
+
+.yellow {
     background-color: #B59F3B;
-    color:white
+    color: white
 }
-.grey{
+
+.grey {
     background-color: #3a3a3C;
-    color:white
+    color: white
 }

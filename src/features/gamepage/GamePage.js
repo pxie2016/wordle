@@ -16,6 +16,8 @@ import Letter from '../letter/Letter.js';
 import './GamePage.css';
 import {Link} from "react-router-dom";
 import Popup from '../popup/Popup.js';
+import {saveState} from "../../localStorage";
+import Keyboard from "../keyboard/Keyboard";
 
 
 export function GamePage() {
@@ -44,18 +46,22 @@ export function GamePage() {
 
     return (
         <div className="gamepage">
+            <Popup trigger={winPopState} content="Congratulations!  Would you like to try again?!" close={() => dispatch(closeWinPop())}/>
+            <Popup trigger={invalidPopState} content="Word not in dictionary."
+                   close={() => dispatch(closeInvalidPop())}/>
+            <Popup trigger={losePopState} content={`The correct answer is ${solution}.`}
+                   close={() => dispatch(closeLosePop())}/>
             {renderContent}
+            <div>
+                <Keyboard/>
+            </div>
             <Link to={"/"} className="home">Back to home</Link>
             <div className="refreshButton" onClick={() => {
                 dispatch(
                     currentDifficulty === 'easy' ? initEasy() : (currentDifficulty === 'medium' ? initMedium() : initHard()));
             }}>Refresh
             </div>
-            <Popup trigger={winPopState} content="Congratulations!" close={() => dispatch(closeWinPop())}/>
-            <Popup trigger={invalidPopState} content="Word not in dictionary."
-                   close={() => dispatch(closeInvalidPop())}/>
-            <Popup trigger={losePopState} content={`The correct answer is ${solution}.`}
-                   close={() => dispatch(closeLosePop())}/>
+            
         </div>
     );
 }

@@ -1,7 +1,6 @@
 .rulePage {
     display: flex;
     flex-direction: column;
-    background-color: #FDFDF0;
     font-family: Arial, sans-serif;
     justify-content: center;
     align-items: center;
@@ -9,15 +8,33 @@
 }
 
 .word {
+    width: 100%;
     margin: 20px;
-    max-width: 300px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
 }
 
 .home {
     width: 200px;
-    color: black
+}
+
+.rule-table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td,
+th {
+    border: 3px solid #959e75;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.highlight {
+    font-weight: bold;
+    font-size: larger;
 }

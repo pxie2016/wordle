@@ -5,7 +5,6 @@ import {useParams} from "react-router-dom";
 import {GamePage} from "./GamePage";
 import {useDispatch} from "react-redux";
 import {initEasy, initMedium, initHard} from "./gamePageSlice";
-import Keyboard from "../keyboard/Keyboard";
 import {store} from "../../app/store";
 import {saveState} from "../../localStorage";
 
@@ -23,13 +22,8 @@ export function GamePageWrapper() {
 
     return (
         <div className="gamepagewrapper">
-            <h1>This is just a wrapper of the actual GamePage!</h1>
-            <h2>The difficulty is {pageDiff}</h2>
+            <div className='title'>Wordle</div>
             <GamePage/>
-
-            <div>
-                <Keyboard/>
-            </div>
         </div>
     )
 

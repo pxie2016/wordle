@@ -10,9 +10,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px solid gray;
+    border: 2px solid #a5ac8be6;
     font-family: Arial, sans-serif;
-    background-color: #efeeee;
+    background-color: #acb38f;
     border-radius: 4px;
     margin: 5px;
     padding: 2px 2px;
@@ -27,7 +27,7 @@
 }
 
 .key:hover {
-    background-color: #dfdddd;
+    background-color: #949c6d;
 }
 
 .key:active {
@@ -40,5 +40,5 @@
 
 .func {
     width: 80px;
-    background-color: #e5e5e5;
+    background-color: #a0a882;
 }

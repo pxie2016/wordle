@@ -9,13 +9,42 @@ export default function RulePage(){
     <div className="rulePage">
         <div className="title">Wordle Rules</div>
         <div className="ruleContainer">
-        <p>Guess the WORDLE in six tries.</p>
-        <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+        <p>Guess the WORDLE in limited tries.</p>
+        <table className="rule-table">
+            <thead>
+                <tr>
+                    <th>Difficulty</th>
+                    <th>Tries</th>
+                    <th>Word Length</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Easy</td>
+                    <td>7</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>Medium</td>
+                    <td>6</td>
+                    <td>6</td>
+                </tr>
+                <tr>
+                    <td>Hard</td>
+                    <td>5</td>
+                    <td>7</td>
+                </tr>
+            </tbody>
+        </table>
+        <p>Each guess must be a valid word.</p>
+        <p>Hit the <span className="highlight">Enter</span> button to submit.</p>
+        <p>Hit the <span className="highlight">Delete</span> button to delete a letter</p>
+        <p>Hit the <span className="highlight">Refresh</span> button to restart the game and try a new word.</p>
         <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
     
     </div>
     
-    <p>Examples:</p>
+    <p className="highlight">Examples:</p>
     
     <div className="word">
         <Letter value={"W"} color={"green"}/>
