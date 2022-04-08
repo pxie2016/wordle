@@ -11,7 +11,7 @@ function App() {
             <Link to={"/gamepage/medium"} className="medium">Medium</Link>
             <Link to={"/gamepage/hard"} className="hard">Hard</Link>
             <Link to={"/rulepage"} className="rules">Rules</Link>
-            <Outlet />
+            <Outlet/>
         </div>
     );
 }

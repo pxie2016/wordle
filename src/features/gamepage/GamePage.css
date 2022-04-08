@@ -1,0 +1,16 @@
+.refreshButton {
+    display: flex;
+    font-style: italic;
+    font-size: medium;
+    border-radius: 15px;
+    border: 2px solid;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    width: 100px
+}
+
+.refreshButton:hover {
+    cursor: pointer;
+}
