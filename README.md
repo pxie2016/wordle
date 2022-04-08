@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using
 the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
-## Design Document
+## Design Scrabble
 
 https://docs.google.com/document/d/1s2Rq_cFp7tk-VLfq7B5mygmJd_0TGDJJuVEV10_pRxQ/edit
 
